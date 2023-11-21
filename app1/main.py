@@ -1,3 +1,5 @@
+# Todo List System
+
 todos = []
 print("Welcome to the Todo List system")
 print("You can add, edit, show a todo or exit program")
@@ -14,16 +16,15 @@ while True:
 
         case 'edit':
             number = int(input("Number of the todo to edit: "))
-            number = number - 1
             new_todo = input("Enter new todo: ")
             todos[number] = new_todo
 
         case 'show':
-            for item in todos:
-                print(item)
+            for index, item in enumerate(todos):
+                print(f"{index}: {item}")
 
         case 'exit':
-            break      
+            break
 
 
 print("Thank for you using the Todo List System")   
