@@ -13,14 +13,14 @@ while True:
         case 'add'| 'a':
             todo = input("Enter a todo: ") + "\n"
 
-            file = open('todos.txt', 'r')
+            file = open('files/todos.txt', 'r')
             todos = file.readlines() #Save File to List
             file.close()
 
 
             todos.append(todo)
 
-            file = open('todos.txt', 'w')
+            file = open('files/todos.txt', 'w')
             file.writelines(todos) #Save List to File with added items
             file.close()
             
@@ -34,7 +34,7 @@ while True:
         case 'show' | 's':
             print("List of todos")
 
-            file = open('todos.txt', 'r')
+            file = open('files/todos.txt', 'r')
             todos = file.readlines()
             file.close()
 
