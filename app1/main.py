@@ -1,6 +1,5 @@
 # Todo List System
 
-todos = []
 print("Welcome to the Todo List system")
 print("You can add, edit, complete, show a todo or exit program")
 
@@ -12,9 +11,19 @@ while True:
 
     match user_action:
         case 'add'| 'a':
-            todo = input("Enter a todo: ")
+            todo = input("Enter a todo: ") + "\n"
+
+            file = open('todos.txt', 'r')
+            todos = file.readlines() #Save File to List
+            file.close()
+
+
             todos.append(todo)
-            todos.sort()
+
+            file = open('todos.txt', 'w')
+            file.writelines(todos) #Save List to File with added items
+            file.close()
+            
 
         case 'edit' | 'e':
             number = int(input("Number of the todo to edit: "))
@@ -24,9 +33,13 @@ while True:
 
         case 'show' | 's':
             print("List of todos")
-            todos.sort()
+
+            file = open('todos.txt', 'r')
+            todos = file.readlines()
+            file.close()
+
             for index, item in enumerate(todos):
-                print(f"{index + 1}: {item}")
+                print(f"{index + 1}: {item}", end="")
             print(f"Total items to do is: {len(todos)}")
 
         case 'complete' | 'c':
