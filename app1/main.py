@@ -15,17 +15,14 @@ while True:
         
         case 'add'| 'a':
             todo = input("Enter a todo: ") + "\n"
-
-            file = open('files/todos.txt', 'r')
-            todos = file.readlines() #Save File to List
-            file.close()
+            with open('files/todos.txt', 'r') as file:
+                todos = file.readlines() #Save File to List
+           
 
 
             todos.append(todo)
-
-            file = open('files/todos.txt', 'w')
-            file.writelines(todos) #Save List to File with added items
-            file.close()
+            with open('files/todos.txt', 'w') as file:
+                file.writelines(todos) #Save List to File with added items
             
 
         case 'edit' | 'e':
@@ -36,15 +33,15 @@ while True:
 
         case 'show' | 's':
             print("List of todos")
-
-            file = open('files/todos.txt', 'r')
-            todos = file.readlines()
-            file.close()
+            
+            with open('files/todos.txt', 'r') as file:
+                todos = file.readlines()
 
             #new_todos =[item.strip('\n') for item in todos] #List Comprehension. a For Loop written in one short line            
 
             for index, item in enumerate(todos):
-                  print(f"{index + 1}: {item}", end="")
+                print(f"{index + 1}: {item}", end="")
+            print('\n')        
             print(f"Total items to do is: {len(todos)}")
 
         case 'complete' | 'c':
