@@ -9,7 +9,10 @@ while True:
     user_action = input("Type add, edit, show, complete or exit: ")
     user_action = user_action.strip()
 
+
+
     match user_action:
+        
         case 'add'| 'a':
             todo = input("Enter a todo: ") + "\n"
 
@@ -38,8 +41,10 @@ while True:
             todos = file.readlines()
             file.close()
 
+            #new_todos =[item.strip('\n') for item in todos] #List Comprehension. a For Loop written in one short line            
+
             for index, item in enumerate(todos):
-                print(f"{index + 1}: {item}", end="")
+                  print(f"{index + 1}: {item}", end="")
             print(f"Total items to do is: {len(todos)}")
 
         case 'complete' | 'c':
