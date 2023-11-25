@@ -57,7 +57,8 @@ while True:
 
 
 
-        case 'complete' | 'c':
+        case 'complete' | 'c': #Removes the Todo from the file since it has been completed
+
             number = int(input("Number of the todo to complete: "))
 
             with open('files/todos.txt', 'r') as file:
