@@ -1,4 +1,4 @@
-# Todo List System
+# Todo List System     
 
 print("Welcome to the Todo List system")
 print("You can add, edit, complete, show a todo or exit program")
@@ -9,38 +9,25 @@ while True:
     user_action = input("Type add, edit, show, complete or exit: ")
     user_action = user_action.strip()
     
-    if 'add' in user_action:    
     
-        todo = input("Enter a todo: ") + "\n"
+    
+    if 'add' in user_action:
+        todo = user_action[4:] + "\n"        
+    
+        #todo = input("Enter a todo: ") + "\n"
+
         with open('files/todos.txt', 'r') as file:
-            todos = file.readlines() #Save File to List
-        
+            todos = file.readlines() #Save File to List       
 
 
         todos.append(todo)
+        
         with open('files/todos.txt', 'w') as file:
             file.writelines(todos) #Save List to File with added items
-        
-
-    if 'edit' in user_action:    
-        number = int(input("Number of the todo to edit: "))
-        number = number - 1
-
-        
-        with open('files/todos.txt', 'r') as file:
-            todos = file.readlines() #Save File to List     
-
-        new_todo = input("Enter new todo: ")
-        todos[number] = new_todo + '\n'
-
-
-        with open('files/todos.txt', 'w') as file:
-                file.writelines(todos) #Save List to File with added items
-
-
-
-    if 'show' in user_action:
-        print("List of todos")
+    
+    
+    elif 'show' in user_action:
+        print("List of todos")        
         
         with open('files/todos.txt', 'r') as file:
             todos = file.readlines()
@@ -50,26 +37,49 @@ while True:
         for index, item in enumerate(todos):
             print(f"{index + 1}: {item}", end="")
         print('\n')        
-        print(f"Total items to do is: {len(todos)}")
+        print(f"Total items to do is: {len(todos)}")        
 
+    
+    elif 'edit' in user_action:    
+        number = int(user_action[5:])
+        #number = int(input("Number of the todo to edit: "))
+        number = number - 1        
+      
+        with open('files/todos.txt', 'r') as file:
+            todos = file.readlines() #Save File to List     
 
+        new_todo = input("Enter new todo: ")
+        todos[number] = new_todo + '\n'
 
-    if 'complete' in user_action: #Removes the Todo from the file since it has been completed
+        
+        with open('files/todos.txt', 'w') as file:
+                file.writelines(todos) #Save List to File with added items
 
-        number = int(input("Number of the todo to complete: "))
+    
+    elif 'complete' in user_action: #Removes the Todo from the file since it has been completed
 
+        #number = int(input("Number of the todo to complete: "))
+        number = int(user_action[9:])
+
+        
         with open('files/todos.txt', 'r') as file:
                 todos = file.readlines() #Save File to List  
+        
         index = (number - 1)
         todo_to_remove = todos[index].strip('\n')        
 
         todos.pop(index) #Remove item from the todos list
 
         with open('files/todos.txt', 'w') as file:
-                file.writelines(todos) #Save List to File with removed items
-        print(f"Todo {todo_to_remove} was removed from the list")             
-
-    if 'exit' in user_action:
-        break
+             file.writelines(todos) #Save List to File with removed items
         
+        print(f"Todo {todo_to_remove} was removed from the list")
+    
+    elif 'exit' in user_action:
+        break
+    else:
+         print("You have not entered a valid command")
+        
+
+
 print("Thank for you using the Todo List System")   
