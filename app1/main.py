@@ -11,7 +11,7 @@ while True:
     
     
     
-    if 'add' in user_action:
+    if user_action.startswith("add"):
         todo = user_action[4:] + "\n"        
     
         #todo = input("Enter a todo: ") + "\n"
@@ -26,7 +26,7 @@ while True:
             file.writelines(todos) #Save List to File with added items
     
     
-    elif 'show' in user_action:
+    elif user_action.startswith("show"):
         print("List of todos")        
         
         with open('files/todos.txt', 'r') as file:
@@ -40,7 +40,7 @@ while True:
         print(f"Total items to do is: {len(todos)}")        
 
     
-    elif 'edit' in user_action:    
+    elif user_action.startswith("edit"):    
         number = int(user_action[5:])
         #number = int(input("Number of the todo to edit: "))
         number = number - 1        
@@ -54,9 +54,10 @@ while True:
         
         with open('files/todos.txt', 'w') as file:
                 file.writelines(todos) #Save List to File with added items
+                
 
     
-    elif 'complete' in user_action: #Removes the Todo from the file since it has been completed
+    elif user_action.startswith("complete"): #Removes the Todo from the file since it has been completed
 
         #number = int(input("Number of the todo to complete: "))
         number = int(user_action[9:])
@@ -74,9 +75,12 @@ while True:
              file.writelines(todos) #Save List to File with removed items
         
         print(f"Todo {todo_to_remove} was removed from the list")
+
+
     
-    elif 'exit' in user_action:
+    elif user_action.startswith("exit"):
         break
+
     else:
          print("You have not entered a valid command")
         
