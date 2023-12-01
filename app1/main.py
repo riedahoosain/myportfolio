@@ -62,25 +62,31 @@ while True:
              continue
 
 
-    
-    elif user_action.startswith("complete"): #Removes the Todo from the file since it has been completed
+    #Removes the Todo from the file since it has been completed
+    elif user_action.startswith("complete"): 
+            try:
+                 
 
-        #number = int(input("Number of the todo to complete: "))
-        number = int(user_action[9:])
+                #number = int(input("Number of the todo to complete: "))
+                number = int(user_action[9:])
 
-        
-        with open('files/todos.txt', 'r') as file:
-                todos = file.readlines() #Save File to List  
-        
-        index = (number - 1)
-        todo_to_remove = todos[index].strip('\n')        
+                
+                with open('files/todos.txt', 'r') as file:
+                        todos = file.readlines() #Save File to List  
+                
+                index = (number - 1)
+                todo_to_remove = todos[index].strip('\n')        
 
-        todos.pop(index) #Remove item from the todos list
+                todos.pop(index) #Remove item from the todos list
 
-        with open('files/todos.txt', 'w') as file:
-             file.writelines(todos) #Save List to File with removed items
-        
-        print(f"Todo {todo_to_remove} was removed from the list")
+                with open('files/todos.txt', 'w') as file:
+                    file.writelines(todos) #Save List to File with removed items
+                
+                print(f"Todo {todo_to_remove} was removed from the list")
+            except IndexError:
+                 print("There is no item with that number.")
+                 continue
+                
 
 
     
@@ -92,4 +98,4 @@ while True:
         
 
 
-print("Thank for you using the Todo List System")   
+print("Thank for you using the Todo List System")
