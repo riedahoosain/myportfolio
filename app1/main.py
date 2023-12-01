@@ -20,8 +20,6 @@ while True:
 
         # todo = input("Enter a todo: ") + "\n"
 
-        # with open('files/todos.txt', 'r') as file:
-        #    todos = file.readlines() #Save File to List
         todos = get_todos()
         todos.append(todo)
 
@@ -30,9 +28,6 @@ while True:
 
     elif user_action.startswith("show"):
         print("List of todos")
-
-        # with open('files/todos.txt', 'r') as file:
-        # todos = file.readlines()
 
         todos = get_todos()
 
@@ -49,9 +44,6 @@ while True:
             # number = int(input("Number of the todo to edit: "))
             number = number - 1
             todos = get_todos()
-
-            # with open('files/todos.txt', 'r') as file:
-            # todos = file.readlines() #Save File to List
 
             new_todo = input("Enter new todo: ")
             todos[number] = new_todo + '\n'
@@ -71,9 +63,6 @@ while True:
             # number = int(input("Number of the todo to complete: "))
             number = int(user_action[9:])
             todos = get_todos()
-
-            # with open('files/todos.txt', 'r') as file:
-            # todos = file.readlines() #Save File to List
 
             index = (number - 1)
             todo_to_remove = todos[index].strip('\n')
