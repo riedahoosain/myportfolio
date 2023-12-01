@@ -1,14 +1,13 @@
 # Todo List System
 
-print("Welcome to the Todo List system")
-print("You can add, edit, complete, show a todo or exit program")
-
-
-def get_todos():
-    with open('files/todos.txt', 'r') as file:
+def get_todos(filepath):
+    with open(filepath, 'r') as file:
         todos_local = file.readlines()  # Save File to List
         return todos_local
 
+
+print("Welcome to the Todo List system")
+print("You can add, edit, complete, show a todo or exit program")
 
 # Accept User input
 while True:
@@ -20,7 +19,7 @@ while True:
 
         # todo = input("Enter a todo: ") + "\n"
 
-        todos = get_todos()
+        todos = get_todos('files/todos.txt')
         todos.append(todo)
 
         with open('files/todos.txt', 'w') as file:
@@ -29,7 +28,7 @@ while True:
     elif user_action.startswith("show"):
         print("List of todos")
 
-        todos = get_todos()
+        todos = get_todos('files/todos.txt')
 
         # new_todos =[item.strip('\n') for item in todos] #List Comprehension. a For Loop written in one short line
 
@@ -43,7 +42,7 @@ while True:
             number = int(user_action[5:])
             # number = int(input("Number of the todo to edit: "))
             number = number - 1
-            todos = get_todos()
+            todos = get_todos('files/todos.txt')
 
             new_todo = input("Enter new todo: ")
             todos[number] = new_todo + '\n'
@@ -62,7 +61,7 @@ while True:
 
             # number = int(input("Number of the todo to complete: "))
             number = int(user_action[9:])
-            todos = get_todos()
+            todos = get_todos('files/todos.txt')
 
             index = (number - 1)
             todo_to_remove = todos[index].strip('\n')
@@ -75,6 +74,9 @@ while True:
             print(f"Todo {todo_to_remove} was removed from the list")
         except IndexError:
             print("There is no item with that number.")
+            continue
+        except ValueError:
+            print("Please enter a number.")
             continue
 
     elif user_action.startswith("exit"):
