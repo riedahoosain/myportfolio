@@ -1,9 +1,17 @@
 # Todo List System
 
 def get_todos(filepath):
-    with open(filepath, 'r') as file:
-        todos_local = file.readlines()  # Save File to List
-        return todos_local
+    try:
+        with open(filepath, 'r') as file:
+            todos_local = file.readlines()  # Save File to List
+            return todos_local
+    except FileNotFoundError:
+        print("File or Dir not found")
+
+
+def write_todos(filepath, todos_arg):
+    with open(filepath, 'w') as file:
+        file.writelines(todos_arg)  # Save List to File with added items
 
 
 print("Welcome to the Todo List system")
@@ -22,8 +30,10 @@ while True:
         todos = get_todos('files/todos.txt')
         todos.append(todo)
 
-        with open('files/todos.txt', 'w') as file:
-            file.writelines(todos)  # Save List to File with added items
+        write_todos('files/todos.txt', todos)
+
+        # with open('files/todos.txt', 'w') as file:
+        # file.writelines(todos)  # Save List to File with added items
 
     elif user_action.startswith("show"):
         print("List of todos")
@@ -47,8 +57,10 @@ while True:
             new_todo = input("Enter new todo: ")
             todos[number] = new_todo + '\n'
 
-            with open('files/todos.txt', 'w') as file:
-                file.writelines(todos)  # Save List to File with added items
+            write_todos('files/todos.txt', todos)
+
+            # with open('files/todos.txt', 'w') as file:
+            # file.writelines(todos)  # Save List to File with added items
 
         except ValueError:
             print("Your command is not valid")
@@ -68,15 +80,17 @@ while True:
 
             todos.pop(index)  # Remove item from the todos list
 
-            with open('files/todos.txt', 'w') as file:
-                file.writelines(todos)  # Save List to File with removed items
+            write_todos('files/todos.txt', todos)
+
+            # with open('files/todos.txt', 'w') as file:
+            # file.writelines(todos)  # Save List to File with removed items
 
             print(f"Todo {todo_to_remove} was removed from the list")
         except IndexError:
             print("There is no item with that number.")
             continue
         except ValueError:
-            print("Please enter a number.")
+            print("Please enter a integer number.")
             continue
 
     elif user_action.startswith("exit"):
