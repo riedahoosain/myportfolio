@@ -67,6 +67,11 @@ while True:
             print("Please make sure that you have entered a number")
             continue
 
+        except IndexError:
+            print("Your command is not valid")
+            print("There is no item with that number.")
+            continue
+
     # Removes the Todo from the file since it has been completed
     elif user_action.startswith("complete"):
         try:
@@ -87,10 +92,12 @@ while True:
 
             print(f"Todo {todo_to_remove} was removed from the list")
         except IndexError:
+            print("Your command is not valid")
             print("There is no item with that number.")
             continue
         except ValueError:
-            print("Please enter a integer number.")
+            print("Your command is not valid")
+            print("Please enter an integer number.")
             continue
 
     elif user_action.startswith("exit"):
