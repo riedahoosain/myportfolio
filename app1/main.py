@@ -1,5 +1,6 @@
 # Todo List System
 
+# Function to read todos from the file
 def get_todos(filepath):
     try:
         with open(filepath, 'r') as file:
@@ -9,9 +10,62 @@ def get_todos(filepath):
         print("File or Dir not found")
 
 
+# Function to write todos to the file
 def write_todos(filepath, todos_arg):
     with open(filepath, 'w') as file:
         file.writelines(todos_arg)  # Save List to File with added items
+
+
+# This Function adds a todo
+def add_to_todo(user_action_local):
+    todo = user_action_local[4:] + "\n"
+
+    todos = get_todos('files/todos.txt')
+    todos.append(todo)
+
+    write_todos('files/todos.txt', todos)
+
+# This function shows list of todos
+
+
+def show_to_do():
+    print("List of todos")
+
+    todos = get_todos('files/todos.txt')
+
+    # new_todos =[item.strip('\n') for item in todos] #List Comprehension. a For Loop written in one short line
+
+    for index, item in enumerate(todos):
+        print(f"{index + 1}: {item}", end="")
+    print('\n')
+    print(f"Total items to do is: {len(todos)}")
+
+
+# This function edits an existing todo
+def edit_to_do(user_action_local):
+    number = int(user_action_local[5:])
+    number = number - 1
+    todos = get_todos('files/todos.txt')
+
+    new_todo = input("Enter new todo: ")
+    todos[number] = new_todo + '\n'
+
+    write_todos('files/todos.txt', todos)
+
+
+# This function completes a todo and removes from the file
+def complete_to_do(user_action_local):
+    number = int(user_action[9:])
+    todos = get_todos('files/todos.txt')
+
+    index = (number - 1)
+    todo_to_remove = todos[index].strip('\n')
+
+    todos.pop(index)  # Remove item from the todos list
+
+    write_todos('files/todos.txt', todos)
+
+    print(f"Todo {todo_to_remove} was removed from the list")
 
 
 print("Welcome to the Todo List system")
@@ -22,45 +76,18 @@ while True:
     user_action = input("Type add, edit, show, complete or exit: ")
     user_action = user_action.strip()
 
+    # Add a new Todo
     if user_action.startswith("add"):
-        todo = user_action[4:] + "\n"
+        add_to_todo(user_action)
 
-        # todo = input("Enter a todo: ") + "\n"
-
-        todos = get_todos('files/todos.txt')
-        todos.append(todo)
-
-        write_todos('files/todos.txt', todos)
-
-        # with open('files/todos.txt', 'w') as file:
-        # file.writelines(todos)  # Save List to File with added items
-
+    # Show list of To Dos
     elif user_action.startswith("show"):
-        print("List of todos")
+        show_to_do()
 
-        todos = get_todos('files/todos.txt')
-
-        # new_todos =[item.strip('\n') for item in todos] #List Comprehension. a For Loop written in one short line
-
-        for index, item in enumerate(todos):
-            print(f"{index + 1}: {item}", end="")
-        print('\n')
-        print(f"Total items to do is: {len(todos)}")
-
+    # Edit a To Do
     elif user_action.startswith("edit"):
         try:
-            number = int(user_action[5:])
-            # number = int(input("Number of the todo to edit: "))
-            number = number - 1
-            todos = get_todos('files/todos.txt')
-
-            new_todo = input("Enter new todo: ")
-            todos[number] = new_todo + '\n'
-
-            write_todos('files/todos.txt', todos)
-
-            # with open('files/todos.txt', 'w') as file:
-            # file.writelines(todos)  # Save List to File with added items
+            edit_to_do(user_action)
 
         except ValueError:
             print("Your command is not valid")
@@ -76,21 +103,8 @@ while True:
     elif user_action.startswith("complete"):
         try:
 
-            # number = int(input("Number of the todo to complete: "))
-            number = int(user_action[9:])
-            todos = get_todos('files/todos.txt')
+            complete_to_do(user_action)
 
-            index = (number - 1)
-            todo_to_remove = todos[index].strip('\n')
-
-            todos.pop(index)  # Remove item from the todos list
-
-            write_todos('files/todos.txt', todos)
-
-            # with open('files/todos.txt', 'w') as file:
-            # file.writelines(todos)  # Save List to File with removed items
-
-            print(f"Todo {todo_to_remove} was removed from the list")
         except IndexError:
             print("Your command is not valid")
             print("There is no item with that number.")
