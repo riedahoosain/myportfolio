@@ -7,7 +7,7 @@
 # All functions sits in this module
 # get_todos and write_todos sits here
 import functions
-
+import time
 
 # This Function adds a todo
 def add_to_todo(user_action_local):
@@ -22,11 +22,12 @@ def add_to_todo(user_action_local):
 def show_to_do():
 
     print("List of todos")
-    todos = functions.get_todos()
+    todos = functions.get_todos()    
     for index, item in enumerate(todos):
         print(f"{index + 1}: {item}", end="")
     print('\n')
     print(f"Total items to do is: {len(todos)}")
+ 
 
 
 # This function edits an existing todo
@@ -52,9 +53,13 @@ def complete_to_do(user_action_local):
 
 print("Welcome to the Todo List system")
 print("You can add, edit, complete, show a todo or exit program")
-
+now = time.strftime("%d %B %Y, %H:%M:%S")
+print(f'Today is {now}')
 # Accept User input
 while True:
+
+    
+
     user_action = input("Type add, edit, show, complete or exit: ")
     user_action = user_action.strip()
 
