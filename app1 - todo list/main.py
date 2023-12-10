@@ -51,6 +51,8 @@ def complete_to_do(user_action_local):
     print(f"Todo {todo_to_remove} was removed from the list")
 
 
+# START OF THE MAIN PROGRAM
+
 print("Welcome to the Todo List system")
 print("You can add, edit, complete, show a todo or exit program")
 now = time.strftime("%d %B %Y, %H:%M:%S")
