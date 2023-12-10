@@ -4,6 +4,7 @@
 
 # from functions import get_todos, write_todos
 
+# This is a console version of the to-do app
 
 
 import functions # All functions sits in this module # get_todos and write_todos sits here
