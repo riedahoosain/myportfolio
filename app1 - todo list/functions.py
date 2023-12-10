@@ -10,6 +10,7 @@ def get_todos(filepath=FILEPATH):
             return todos_local
     except FileNotFoundError:
         print("File or Dir not found")
+  
 
 
 # Function to write todos to the file
