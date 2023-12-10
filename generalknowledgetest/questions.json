@@ -26,9 +26,8 @@
             "Perth"
         ],
         "correct_answer": 3
-    }
-
- {
+    },
+    {
         "question_text": "Who painted the Mona Lisa?",
         "alternatives": [
             "Vincent van Gogh",
@@ -37,9 +36,8 @@
             "Michelangelo"
         ],
         "correct_answer": 3
-    }
-
- {
+    },
+    {
         "question_text": "What is the largest ocean in the world?",
         "alternatives": [
             "Atlantic Ocean",
