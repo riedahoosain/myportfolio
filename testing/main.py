@@ -1,13 +1,14 @@
-from parsers import parse 
-import random
- 
-# Ask the user to enter a lower and an upper bound divided by a comma
-user_input = input("Enter a lower bound and an upper bound divided a comma (e.g., 2,10)")
- 
-# Parse the user string by calling the parse function
-parsed = parse(user_input)
- 
-# Pick a random int between the two numbers
-rand = random.randint(parsed['lower_bound'], parsed['upper_bound'])
- 
-print(rand)
+import PySimpleGUI as sg
+
+label1 = sg.Text("Enter feet: ")
+input_box1 = sg.Input()
+
+label2 = sg.Text("Enter inches: ")
+input_box2 = sg.Input()
+convert_button = sg.Button("Convert")
+
+window = sg.Window("Convertor",layout=[[label1, input_box1],
+                                       [label2, input_box2],
+                                       [convert_button]])
+window.read()
+window.close()
