@@ -1,6 +1,52 @@
-[{"question_text": "What are dolphins?",
-  "alternatives": ["Amphibians", "Fish", "Mammals", "Birds"],
-  "correct_answer": 3},
-{"question_text": "What occupies most of the Earth's surface",
- "alternatives": ["Land", "Water"],
- "correct_answer": 2}]
+[
+    {
+        "question_text": "What are dolphins?",
+        "alternatives": [
+            "Amphibians",
+            "Fish",
+            "Mammals",
+            "Birds"
+        ],
+        "correct_answer": 3
+    },
+    {
+        "question_text": "What occupies most of the Earth's surface",
+        "alternatives": [
+            "Land",
+            "Water"
+        ],
+        "correct_answer": 2
+    },
+    {
+        "question_text": "What is the capital of Australia?",
+        "alternatives": [
+            "Sydney",
+            "Melbourne",
+            "Canberra",
+            "Perth"
+        ],
+        "correct_answer": 3
+    }
+
+ {
+        "question_text": "Who painted the Mona Lisa?",
+        "alternatives": [
+            "Vincent van Gogh",
+            "Pablo Picasso",
+            "Leonardo da Vinci",
+            "Michelangelo"
+        ],
+        "correct_answer": 3
+    }
+
+ {
+        "question_text": "What is the largest ocean in the world?",
+        "alternatives": [
+            "Atlantic Ocean",
+            "Indian Ocean",
+            "Arctic Ocean",
+            "Pacific Ocean"
+        ],
+        "correct_answer": 4
+    }
+]
