@@ -4,9 +4,9 @@
 
 # from functions import get_todos, write_todos
 
-# All functions sits in this module
-# get_todos and write_todos sits here
-import functions
+
+
+import functions # All functions sits in this module # get_todos and write_todos sits here
 import time
 
 # This Function adds a todo
