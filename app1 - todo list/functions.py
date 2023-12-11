@@ -1,5 +1,5 @@
 # Current Path where todos.txt file is being stored
-FILEPATH = 'files/todos.txt'
+FILEPATH = 'todos.txt'
 
 # Function to read todos from the file
 def get_todos(filepath=FILEPATH):

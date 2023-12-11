@@ -64,12 +64,11 @@ def create_gui():
     clock = sg.Text("", key="clock")
     label = sg.Text("Type in todo")
     input_box = sg.InputText(tooltip="Enter todo", key="todo")
-    add_button = sg.Button("Add")    
-    edit_button = sg.Button("Edit")
-    complete_button = sg.Button("Complete")
-    exit_button = sg.Button("Exit")
-    list_box = sg.Listbox(values=functions.get_todos(), key='todos',
-                          enable_events=True, size=[45, 10])
+    add_button = sg.Button("Add", mouseover_colors="red",tooltip="Add a ToDo")    
+    edit_button = sg.Button("Edit",mouseover_colors="red", tooltip="Edit a ToDo")
+    complete_button = sg.Button("Complete",mouseover_colors="red",tooltip="Complete/Remove ToDo")
+    exit_button = sg.Button("Exit",mouseover_colors="red", tooltip="Exit the program")
+    list_box = sg.Listbox(values=functions.get_todos(), key='todos', enable_events=True, size=[45, 10])
     info_text = sg.Text("ℹ️", key="information")
 
     menu_layout = [[clock],
@@ -80,9 +79,7 @@ def create_gui():
                    [add_button, edit_button, complete_button, exit_button]]
     # Stores the GUI Layout in a list which is then used when loading GUI
 
-    window = sg.Window('My To-Do App',
-                       layout=menu_layout,
-                       font=('Helvetica', 20))
+    window = sg.Window('My To-Do App', layout=menu_layout, font=('Helvetica', 20))
     return window
 
 
