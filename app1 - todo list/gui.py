@@ -1,59 +1,11 @@
 # GUI interface for To-Do App
+# This app allows users to add edit and complete a To-Do list
+# This app can also be used for a shopping list for example
+# the file todos.txt needs to exist where the app is
 
 import functions
 import PySimpleGUI as sg
 import time
-
-
-def add_to_todo():
-    '''
-    Adds a todo to the list
-    '''
-    try:
-        todos = functions.get_todos()
-        new_todo = values['todo'].strip() + "\n"
-        todos.append(new_todo)
-        functions.write_todos(todos)
-        window['todos'].update(values=todos)
-        window['todo'].update(value="")
-
-    except AttributeError:
-        print("The was an error and the Todo was not added")
-        print("This can happen if the file that writes the todo is not found")
-
-
-def edit_to_do():
-    try:
-        todo_to_edit = values['todos'][0]
-        new_todo = values['todo']
-
-        todos = functions.get_todos()
-        index = todos.index(todo_to_edit)
-        todos[index] = new_todo + '\n'
-        functions.write_todos(todos)
-        window['todos'].update(values=todos)
-
-    except IndexError:
-        window['information'].update(
-            value="Please select an item first before you Edit")
-        sg.popup("Please select an item first before you Edit",
-                 font=('Helvetica', 20))
-
-
-def complete_to_do():
-    try:
-        todo_to_complete = values['todos'][0]
-        todos = functions.get_todos()
-        todos.remove(todo_to_complete)
-        functions.write_todos(todos)
-        window['todos'].update(values=todos)
-        window['todo'].update(value="")
-    except IndexError:
-        window['information'].update(
-            value="Please select an item first before you click Complete")
-        sg.popup("Please select an item first before you click Complete",
-                 font=('Helvetica', 20))
-
 
 def create_gui():
     '''
@@ -81,6 +33,57 @@ def create_gui():
 
     window = sg.Window('My To-Do App', layout=menu_layout, font=('Helvetica', 20))
     return window
+
+def add_to_todo():
+    '''
+    Adds a todo to the list
+    '''
+    try:
+        todos = functions.get_todos()       
+        new_todo = values['todo'].strip()
+        new_todo = new_todo + '\n'
+        todos.append(new_todo)
+        functions.write_todos(todos)
+        window['todos'].update(values=todos)
+        window['todo'].update(value="")
+
+    except AttributeError:
+        print("The was an error and the Todo was not added")
+        print("This can happen if the file that writes the todo is not found")
+
+
+def edit_to_do():
+    try:
+        todo_to_edit = values['todos'][0]
+        new_todo = values['todo']
+
+        todos = functions.get_todos()
+        index = todos.index(todo_to_edit)
+        todos[index] = new_todo + '\n'
+        functions.write_todos(todos)
+        window['todos'].update(values=todos)
+        window['todo'].update(value="")
+
+    except IndexError:
+        window['information'].update(
+            value="Please select an item first before you Edit")
+        sg.popup("Please select an item first before you Edit",
+                 font=('Helvetica', 20))
+
+
+def complete_to_do():
+    try:
+        todo_to_complete = values['todos'][0]
+        todos = functions.get_todos()
+        todos.remove(todo_to_complete)
+        functions.write_todos(todos)
+        window['todos'].update(values=todos)
+        window['todo'].update(value="")
+    except IndexError:
+        window['information'].update(
+            value="Please select an item first before you click Complete")
+        sg.popup("Please select an item first before you click Complete",
+                 font=('Helvetica', 20))
 
 
 window = create_gui()
