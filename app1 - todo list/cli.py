@@ -1,7 +1,7 @@
 # This is a console version of the To-Do app
 # This app allows users to add edit and complete a To-Do list
 # This app can also be used for a shopping list or anything that requires a list
-# the file todos.txt needs to exist where the app is or the program will create a new blank file
+# the file in FILEPATH needs to exist where the app is or the program will create a new blank file
 
 
 import functions # All functions sits in this module # get_todos and write_todos sits here
@@ -52,8 +52,10 @@ def complete_to_do(user_action_local):
 
 # START OF THE MAIN PROGRAM
 
-if not os.path.exists('todos.txt'):
-    with open('todos.txt', 'w') as file:
+# Checks if the todo file exists which is stored in constant variable FILEPATH
+# Creates a new file it does not exist
+if not os.path.exists(functions.FILEPATH):
+    with open(functions.FILEPATH, 'w') as file:
         pass
 
 print("Welcome to the Todo List system")

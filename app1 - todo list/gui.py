@@ -1,7 +1,7 @@
 # GUI interface for To-Do App
 # This app allows users to add edit and complete a To-Do list
 # This app can also be used for a shopping list or anything that requires a list
-# the file todos.txt needs to exist where the app is or the program will create a new blank file
+# the file in FILEPATH needs to exist where the app is or the program will create a new blank file
 
 import functions
 import PySimpleGUI as sg
@@ -14,8 +14,8 @@ def create_gui():
     '''
     sg.theme("Black")
 
-    clock = sg.Text("", key="clock")
-    label = sg.Text("Type in todo")
+    clock = sg.Text(time.strftime("%b %d, %Y %H:%M:%S"), key="clock")
+    label = sg.Text("Type in a To-Do and click Add to save it")
     input_box = sg.InputText(tooltip="Enter todo", key="todo")
     add_button = sg.Button("Add", mouseover_colors="red",tooltip="Add a ToDo")    
     edit_button = sg.Button("Edit",mouseover_colors="red", tooltip="Edit a ToDo")
@@ -89,8 +89,10 @@ def complete_to_do():
 
 #MAIN PROGRAM
 
-if not os.path.exists('todos.txt'):
-    with open('todos.txt', 'w') as file:
+# Checks if the todo file exists which is stored in constant variable FILEPATH
+# Creates a new file it does not exist
+if not os.path.exists(functions.FILEPATH):
+    with open(functions.FILEPATH, 'w') as file:
         pass
 
 window = create_gui()
