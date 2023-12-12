@@ -1,11 +1,12 @@
 # GUI interface for To-Do App
 # This app allows users to add edit and complete a To-Do list
-# This app can also be used for a shopping list for example
-# the file todos.txt needs to exist where the app is
+# This app can also be used for a shopping list or anything that requires a list
+# the file todos.txt needs to exist where the app is or the program will create a new blank file
 
 import functions
 import PySimpleGUI as sg
 import time
+import os
 
 def create_gui():
     '''
@@ -86,6 +87,12 @@ def complete_to_do():
                  font=('Helvetica', 20))
 
 
+#MAIN PROGRAM
+
+if not os.path.exists('todos.txt'):
+    with open('todos.txt', 'w') as file:
+        pass
+
 window = create_gui()
 while True:
     event, values = window.read(timeout=1000)
@@ -112,4 +119,3 @@ while True:
             break       
 
 window.close()
-print("Good Bye?")
