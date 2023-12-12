@@ -113,7 +113,10 @@ while True:
             complete_to_do()
 
         case 'todos':
-            window['todo'].update(value=values['todos'][0])
+            try:
+                window['todo'].update(value=values['todos'][0])
+            except IndexError:
+                pass
 
         case "Exit" | sg.WIN_CLOSED:
             break       
