@@ -10,7 +10,7 @@ with col1:
 
 with col2:
     st.title("Rieda Hoosain")
-    content = '''    
+    aboutme = '''    
     Hello, my name is Rieda, an experienced Technical Savvy individual with a demonstrated history of working in the information technology and services industry. 
     IT and Software Support Engineer skilled in Hardware,Software and Network Support.
     I also have skills in the Software Development Life Cycle (SDLC), SQL, Customer Service, and Technical Support industry.
@@ -21,4 +21,9 @@ with col2:
     Looking for a company that will give me a chance to master Python software development and grow from there
 
     '''
-    st.info(content)
+    st.info(aboutme)
+
+contactme = '''
+Below is some of the apps that I have built while learning Python. Feel Free to contact me if you have any questions
+'''
+st.write(contactme)
