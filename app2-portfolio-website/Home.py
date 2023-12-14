@@ -1,4 +1,6 @@
 # This my portfolio website that has links to apps and websites I created while studying
+# A website built entirely in Python to showcase coding projects and apps.
+
 
 import streamlit as st
 import pandas
