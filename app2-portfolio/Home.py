@@ -19,7 +19,7 @@ with col2:
     IT and Software Support Engineer skilled in Hardware,Software and Network Support.
     I also have skills in the Software Development Life Cycle (SDLC), SQL, Customer Service, and Technical Support industry.
     Strong information technology professional graduated from Rylands High
-    I was a developer in Visual Basic 6 and SQL7 and have taught myself Python using various Courses
+    I was a aoftware developer in Visual Basic 6 and SQL7 in the past and I have taught myself Python using various Courses
     I do hope this website will help people get an idea of what I know.
 
     Looking for a company that will give me a chance to master Python software development and grow from there
@@ -28,9 +28,10 @@ with col2:
     st.info(aboutme)
 
 contactme = '''
-Below is some of the apps that I have built while learning Python. Feel Free to contact me if you have any questions
+Below is some of the apps that I have built while learning Python. \n
+Feel Free to contact me if you have any questions using the contact us page
 '''
-st.write(contactme)
+st.info(contactme)
 
 #Uses Pandas to pull data from CSV that contains Apps, and Source to Apps Built
 col3, empty_col, col4 = st.columns([1.5, 0.5, 1.5])

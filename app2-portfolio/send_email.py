@@ -1,24 +1,23 @@
 #This is a script that can send emails in Python using gmail
 import smtplib, ssl
 
-SUBJECT = "Sent from My Python Portfolio Website"
 
-host = "smtp.gmail.com"
-port = 465
+def send_email(message):
 
-username = "innotechsa24@gmail.com"
-password = "nvyz ytcl ahrb kjie"
+    SUBJECT = "Sent from My Python Portfolio Website"
 
-receiver = "innotechsa24@gmail.com"
-context = ssl.create_default_context()
+    host = "smtp.gmail.com"
+    port = 465
 
-message = """\
-Subject: Sent from My Python Portfolio Website
-Hi!
-How are you?
-Bye!
-"""
+    username = "innotechsa24@gmail.com"
+    password = "nvyz ytcl ahrb kjie"
 
-with smtplib.SMTP_SSL(host, port, context=context) as server:
-    server.login(username, password)
-    server.sendmail(username, receiver, message)
+    receiver = "innotechsa24@gmail.com"
+    context = ssl.create_default_context()
+
+    
+    
+ 
+    with smtplib.SMTP_SSL(host, port, context=context) as server:
+        server.login(username, password)
+        server.sendmail(username, receiver, message)
