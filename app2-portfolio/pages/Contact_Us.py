@@ -30,5 +30,4 @@ Sent from My Python Portfolio Website
                 st.info("Your Email was sent successfully")
                 submit_button = False
             else:
-                st.info(
-                    "Please make sure you entered an email address and content in the text area")
+                st.info("Please make sure you entered an email address and content in the text area")
