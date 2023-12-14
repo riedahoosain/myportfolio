@@ -1,3 +1,5 @@
+# This my portfolio website that has links to apps and websites I created while studying
+
 import streamlit as st
 import pandas
 
