@@ -25,7 +25,7 @@ for filepath in filepaths:
     pdf.set_font(family="Times", style="B", size=20)
     pdf.cell(w=50, h=8, txt=filenames.title(), ln=1)
     pdf.set_font(family="Times", size=10)
-    pdf.multi_cell(200, 10, data)
+    pdf.multi_cell(w=0, h=10, txt=data)
 
 # Saves instance with all data to one PDF file
 # Saves to the same folder where main file is
