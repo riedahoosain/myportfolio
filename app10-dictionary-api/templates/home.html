@@ -3,11 +3,21 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Translator API</title>
+    <title>Dictionary API</title>
   </head>
   <body>
-    <h1>Translator API</h1>
+    <h1>Dictionary API</h1>
+    <h2>Returns the meaning of the word provided using format below:</h2>
     <p>URL format: http://127.0.0.1:5000/api/v1/word</p>
+    <br>
     <p>URL Example: http://127.0.0.1:5000/api/v1/sun</p>
+    <br>
+    <p>URL Example: http://127.0.0.1:5000/api/v1/moon</p>
+    <br>
+    <p>The samples above would return:</p>
+    <p>{
+      "definition": "1. Any star, especially when seen as the centre of any single solar system.\n2. The particular star at the centre of our solar system, from which the Earth gets light and heat.\n",
+      "word": "sun"
+    }</p>
   </body>
 </html>
