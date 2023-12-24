@@ -9,6 +9,7 @@ RECEIVER = "innotechsa24@gmail.com"
 
 
 def send_email(image_path):
+    print("send_email function started")
     email_message = EmailMessage()
     email_message["Subject"] = "New camera alert detected"
     email_message.set_content("Hey we just picked up a new image on the camera")
@@ -26,8 +27,8 @@ def send_email(image_path):
     gmail.login(SENDER, PASSWORD)
     gmail.sendmail(SENDER, RECEIVER, email_message.as_string())
     gmail.quit()
-
-    print("Email was sent")
+    
+    print("send_email function ended")
 
 
 if __name__ == "__main__":
