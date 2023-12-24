@@ -2,7 +2,8 @@
 import requests
 import selectorlib
 import smtplib
-import smtplib, ssl
+import smtplib
+import ssl
 import os
 import time
 
@@ -64,8 +65,8 @@ if __name__ == "__main__":
         content = read_data(extracted)
         if extracted != "No upcoming tours":
             if extracted not in content:
-                store_data(extracted)            
-                send_email(message = f"""\
+                store_data(extracted)
+                send_email(message=f"""\
 Subject: New event was found
                        
 Hey, new event was found.
@@ -74,6 +75,3 @@ Sent from My Webscraping App
                        
 """)
         time.sleep(10)
-
-
-             
