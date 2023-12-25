@@ -5,13 +5,17 @@ import smtplib
 import ssl
 import os
 import time
-
-
+import sqlite3
 
 
 HEADERS = {
     'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36'}
 URL = "http://programmer100.pythonanywhere.com/tours/"
+
+
+# Establish a connection
+connection = sqlite3.connect('data.db')
+
 
 
 def scrape(url):
@@ -46,13 +50,25 @@ def send_email(message):
 
 
 def store_data(extracted):
-    with open("data.txt", "a") as file:
-        file.write(extracted + "\n")
+    '''Writes the new data to a sqlite db'''
+    row = extracted.split(",")
+    row = [item.strip() for item in row]
+    cursor = connection.cursor()
+    cursor.execute("INSERT INTO events VALUES(?,?,?)", row)
+    connection.commit()
 
 
-def read_data(extracted):
-    with open("data.txt", "r") as file:
-        return file.read()
+def read_data(extracted):    
+    row = extracted.split(",")
+    row = [item.strip() for item in row]
+    band, city, date = row
+    cursor = connection.cursor()
+
+    # Query Data
+    cursor.execute("SELECT * FROM events WHERE band=? AND city=? AND date=?", (band, city, date))
+    rows = cursor.fetchall()
+    print(rows)
+    return rows
 
 
 if __name__ == "__main__":
@@ -63,10 +79,10 @@ if __name__ == "__main__":
         extracted = extract(scraped)
         print(extracted)
 
-        content = read_data(extracted)
         if extracted != "No upcoming tours":
-            if extracted not in content:
-                store_data(extracted)
+            row = read_data(extracted=extracted)
+            if not row:
+                store_data(extracted=extracted)
                 send_email(message=f"""\
 Subject: New event was found
                        
@@ -75,4 +91,4 @@ Hey, new event was found.
 Sent from My Webscraping App
                        
 """)
-        time.sleep(10)
+        time.sleep(5)
