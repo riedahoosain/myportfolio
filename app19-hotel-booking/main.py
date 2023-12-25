@@ -1,14 +1,17 @@
-# This is a Hotel booking system that allows users to book a hotel and make reservations
-# This uses OOP and is CLI
+"""This is a Hotel booking system that allows users to book a hotel and make reservations
+This uses OOP and is CLI """
 
 import pandas
 
-df = pandas.read_csv('hotels.csv', dtype={"id":str})
+df = pandas.read_csv('hotels.csv', dtype={"id": str})
 
 
 class Hotel:
+    """ Hotel Class that allows booking and available of Hotel"""
+
     def __init__(self, hotel_id):
         self.hotel_id = hotel_id
+        self.name = df.loc[df["id"] == self.hotel_id, "name"].squeeze()
 
     def book(self):
         """Books a hotel by changing its available to no"""
@@ -18,7 +21,7 @@ class Hotel:
     def available(self):
         """Checks if Hotel is available"""
         availability = df.loc[df["id"] == self.hotel_id, "available"].squeeze()
-        
+
         if availability == "yes":
             return True
         else:
@@ -26,21 +29,32 @@ class Hotel:
 
 
 class ReservationTicket:
+    """Creates a Reservation Ticket ones an available hotel is booked"""
+
     def __init__(self, customer_name, hotel_object):
-        pass
+        self.customer_name = customer_name
+        self.hotel = hotel_object
 
     def generate(self):
-        pass
+        """Generates the ticket info"""
+        content = f"""
+        Thank you for your reservation!
+        Here are your booking data:
+        Name: {self.customer_name}
+        Hotel name: {self.hotel.name}
+        """
+        return content
 
 
 print(df)
-hotel_id = input("Enter the id of the hotel: ")
-hotel = Hotel(hotel_id)
+hotel_ID = input("Enter the id of the hotel: ")
+hotel = Hotel(hotel_ID)
 
 if hotel.available():
     hotel.book()
     name = input("Enter your name: ")
-    reservation_ticket = ReservationTicket(name, hotel)
+    reservation_ticket = ReservationTicket(
+        customer_name=name, hotel_object=hotel)
     print(reservation_ticket.generate())
 else:
     print("Hotel is not available. ")
