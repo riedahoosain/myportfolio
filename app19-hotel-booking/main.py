@@ -22,10 +22,7 @@ class Hotel:
         """Checks if Hotel is available"""
         availability = df.loc[df["id"] == self.hotel_id, "available"].squeeze()
 
-        if availability == "yes":
-            return True
-        else:
-            return False
+        return availability == "yes"
 
 
 class ReservationTicket:
