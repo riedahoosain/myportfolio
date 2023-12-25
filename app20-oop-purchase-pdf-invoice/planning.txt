@@ -1,0 +1,8 @@
+Loads the list of items available and qty
+Users chooses the items
+If item is available, generates an invoice or displays out of stock
+subtracts 1 item from the data file then updates with new qty
+
+classes:
+Item
+Order
