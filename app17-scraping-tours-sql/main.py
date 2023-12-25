@@ -2,7 +2,6 @@
 import requests
 import selectorlib
 import smtplib
-import smtplib
 import ssl
 import os
 import time
