@@ -1,9 +1,12 @@
-from PyQt6.QtWidgets import QApplication, QLabel, QWidget, QGridLayout, QLineEdit, QPushButton
+"""Calculates the current age of a person once DOB is provided"""
 import sys
 from datetime import datetime
+from PyQt6.QtWidgets import QApplication, QLabel, QWidget, QGridLayout, QLineEdit, QPushButton
 
 
 class AgeCalculator(QWidget):
+    """This class is the GUI design of the Age Calculator"""
+
     def __init__(self):
         super().__init__()
         self.setWindowTitle("Age Calculator")
@@ -32,6 +35,7 @@ class AgeCalculator(QWidget):
         self.setLayout(grid)
 
     def calculate_age(self):
+        """Method to calculate the age"""
 
         current_year = datetime.now().year
         date_of_birth = self.date_birth_line_edit.text()
