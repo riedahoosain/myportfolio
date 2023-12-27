@@ -1,3 +1,5 @@
+# A desktop PyQt6 GUI app for managing university student data with an SQL database backend.
+# Connects to sqlite db
 import sys
 import sqlite3
 from PyQt6.QtCore import Qt
