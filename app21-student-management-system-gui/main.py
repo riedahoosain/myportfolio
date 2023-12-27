@@ -3,8 +3,8 @@ import sqlite3
 from PyQt6.QtCore import Qt
 from PyQt6.QtWidgets import QApplication, QLabel, QWidget, QGridLayout, \
     QLineEdit, QPushButton, QComboBox, QMainWindow, QTableWidget, \
-    QTableWidgetItem, QDialog, QVBoxLayout
-from PyQt6.QtGui import QAction
+    QTableWidgetItem, QDialog, QVBoxLayout,QToolBar
+from PyQt6.QtGui import QAction, QIcon
 
 
 class MainWindow(QMainWindow):
@@ -13,7 +13,7 @@ class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
         self.setWindowTitle("Student Management System")
-        self.setFixedSize(800, 600)
+        self.setMinimumSize(800, 600)
 
         # File and Help Menu Bar
         file_menu_item = self.menuBar().addMenu("&File")
@@ -21,14 +21,14 @@ class MainWindow(QMainWindow):
         edit_menu_item = self.menuBar().addMenu("&Edit")
 
         # File and Help submenu items
-        add_student_action = QAction("Add Student", self)
+        add_student_action = QAction(QIcon("icons/add.png"),"Add Student", self)
         add_student_action.triggered.connect(self.insert)
         file_menu_item.addAction(add_student_action)
 
         about_action = QAction("About", self)
         help_menu_item.addAction(about_action)
 
-        search_action = QAction("Search", self)
+        search_action = QAction(QIcon("icons/search.png"),"Search", self)
         search_action.triggered.connect(self.search)
         edit_menu_item.addAction(search_action)
 
@@ -42,6 +42,14 @@ class MainWindow(QMainWindow):
             ("Id", "Name", "Course", "Mobile"))
         self.table.verticalHeader().setVisible(False)
         self.setCentralWidget(self.table)
+
+        # Create Toolbar
+        toolbar = QToolBar()
+        toolbar.setMovable(True)
+        self.addToolBar(toolbar)
+        toolbar.addAction(add_student_action)
+        toolbar.addAction(search_action)
+
 
     def load_data(self):
         """Loads data from the sql database to the tables"""
