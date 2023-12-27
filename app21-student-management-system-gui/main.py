@@ -28,6 +28,7 @@ class MainWindow(QMainWindow):
 
         about_action = QAction("About", self)
         help_menu_item.addAction(about_action)
+        about_action.triggered.connect(self.about)
 
         search_action = QAction(QIcon("icons/search.png"), "Search", self)
         search_action.triggered.connect(self.search)
@@ -102,6 +103,10 @@ class MainWindow(QMainWindow):
 
     def delete(self):
         dialog = DeleteDialog()
+        dialog.exec()
+
+    def about(self):
+        dialog = AboutDialog()
         dialog.exec()
 
 
@@ -301,6 +306,20 @@ class SearchDialog(QDialog):
             main_window.table.item(item.row(), 1).setSelected(True)
         cursor.close()
         connection.close()
+
+
+class AboutDialog(QMessageBox):
+    """About the App"""
+
+    def __init__(self):
+        super().__init__()
+        self.setWindowTitle("About")
+        content = """
+        This app was created while learning Python
+        This is a student record system that stores Student data in a sqlite db
+        You can modify the program if you would like to add more tables etc
+        """
+        self.setText(content)
 
 
 app = QApplication(sys.argv)
