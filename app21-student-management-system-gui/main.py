@@ -3,7 +3,7 @@ import sqlite3
 from PyQt6.QtCore import Qt
 from PyQt6.QtWidgets import QApplication, QLabel, QWidget, QGridLayout, \
     QLineEdit, QPushButton, QComboBox, QMainWindow, QTableWidget, \
-    QTableWidgetItem, QDialog, QVBoxLayout, QToolBar, QStatusBar
+    QTableWidgetItem, QDialog, QVBoxLayout, QToolBar, QStatusBar, QMessageBox
 from PyQt6.QtGui import QAction, QIcon
 
 
@@ -106,6 +106,7 @@ class MainWindow(QMainWindow):
 
 
 class EditDialog(QDialog):
+    """Edit Record Menu"""
 
     def __init__(self):
         super().__init__()
@@ -162,15 +163,53 @@ class EditDialog(QDialog):
         connection.commit()
         cursor.close()
         connection.close()
-        
+
         main_window.load_data()
         self.student_name.setText("")
         self.mobile_number.setText("")
 
 
 class DeleteDialog(QDialog):
+    """Delete Record Menu"""
+
     def __init__(self):
         super().__init__()
+        self.setWindowTitle("Delete Record")
+
+        layout = QGridLayout()
+        confirmation = QLabel(
+            "Are you sure that you want to delete this record?")
+        button_yes = QPushButton("Yes")
+        button_no = QPushButton("No")
+
+        layout.addWidget(confirmation, 0, 0, 1, 2)
+        layout.addWidget(button_yes, 1, 0)
+        layout.addWidget(button_no, 1, 1)
+
+        self.setLayout(layout)
+
+        button_yes.clicked.connect(self.delete_record)
+        button_no.clicked.connect(self.close)
+
+    def delete_record(self):
+
+        index = main_window.table.currentRow()
+        student_id = main_window.table.item(index, 0).text()
+
+        connection = sqlite3.connect('database.db')
+        cursor = connection.cursor()
+        cursor.execute("DELETE FROM students WHERE Id = ?", (student_id,))
+        connection.commit()
+        cursor.close()
+        connection.close()
+
+        main_window.load_data()
+        self.close()
+
+        confirmation_widget = QMessageBox()
+        confirmation_widget.setWindowTitle("Success")
+        confirmation_widget.setText("Record has been deleted")
+        confirmation_widget.exec()
 
 
 class InsertDialog(QDialog):
