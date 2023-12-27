@@ -18,6 +18,7 @@ class MainWindow(QMainWindow):
         # File and Help Menu Bar
         file_menu_item = self.menuBar().addMenu("&File")
         help_menu_item = self.menuBar().addMenu("&Help")
+        edit_menu_item = self.menuBar().addMenu("&Edit")
 
         # File and Help submenu items
         add_student_action = QAction("Add Student", self)
@@ -26,6 +27,10 @@ class MainWindow(QMainWindow):
 
         about_action = QAction("About", self)
         help_menu_item.addAction(about_action)
+
+        search_action = QAction("Search", self)
+        search_action.triggered.connect(self.search)
+        edit_menu_item.addAction(search_action)
 
         # This needs to be used if the menu does not show
         # about_action.setMenuRole(QAction.MenuRole.NoRole)
@@ -54,6 +59,10 @@ class MainWindow(QMainWindow):
         """Loads the insert dialog"""
         dialog = InsertDialog()
         dialog.exec()
+
+    def search(self):
+        search_dialog = SearchDialog()
+        search_dialog.exec()
 
 
 class InsertDialog(QDialog):
@@ -106,6 +115,32 @@ class InsertDialog(QDialog):
         student_system.load_data()
         self.student_name.setText("")
         self.mobile_number.setText("")
+
+
+class SearchDialog(QDialog):
+    def __init__(self):
+        super().__init__()
+        self.setWindowTitle("Search Student")
+        self.setFixedWidth(300)
+        self.setFixedHeight(300)
+
+        layout = QVBoxLayout()
+
+        # Add Student Name
+        self.student_name = QLineEdit()
+        self.student_name.setPlaceholderText("Name")
+        layout.addWidget(self.student_name)
+
+        # Add Submit Button
+        button = QPushButton("Search")
+        button.clicked.connect(self.search_student)
+        layout.addWidget(button)
+
+        self.setLayout(layout)
+
+    def search_student(self):
+        """Function that checks data for the search results"""
+        print("Clicked the Search Button")
 
 
 app = QApplication(sys.argv)
