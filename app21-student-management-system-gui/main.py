@@ -112,12 +112,14 @@ class InsertDialog(QDialog):
         connection.commit()
         cursor.close()
         connection.close()
-        student_system.load_data()
+        main_window.load_data()
         self.student_name.setText("")
         self.mobile_number.setText("")
 
 
 class SearchDialog(QDialog):
+    """ Search for a student Dialog Menu """
+
     def __init__(self):
         super().__init__()
         self.setWindowTitle("Search Student")
@@ -140,11 +142,22 @@ class SearchDialog(QDialog):
 
     def search_student(self):
         """Function that checks data for the search results"""
-        print("Clicked the Search Button")
+        name = self.student_name.text()
+        connection = sqlite3.connect("database.db")
+        cursor = connection.cursor()
+        result = cursor.execute(
+            "SELECT * FROM students WHERE name = ?", (name,))
+        rows = list(result)
+        items = main_window.table.findItems(
+            name, Qt.MatchFlag.MatchFixedString)
+        for item in items:
+            main_window.table.item(item.row(), 1).setSelected(True)
+        cursor.close()
+        connection.close()
 
 
 app = QApplication(sys.argv)
-student_system = MainWindow()
-student_system.show()
-student_system.load_data()
+main_window = MainWindow()
+main_window.show()
+main_window.load_data()
 sys.exit(app.exec())
