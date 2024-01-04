@@ -9,14 +9,14 @@ setup(
     license='MIT',
     # Short description of your library
     description='This package can be used to convert Excel invoices to PDF invoices.',
-    author='Innovative Technology',                   # Your name
+    author='Rieda Hoosain',                   # Your name
     author_email='innotechsa24@gmail.com',  # Your email
     # Homepage of your library (e.g. github or your website)
-    url='https://example.com',
+    url='https://github.com/riedahoosain/myportfolio/tree/main/app27-python-package',
     # Keywords users can search on pypi.org
     keywords=['invoice', 'excel', 'pdf'],
     # Other 3rd-party libs that pip needs to install
-    install_requires=['fpdf', 'openpyxl'],
+    install_requires=['pandas','fpdf', 'openpyxl'],
     classifiers=[
         # Chose either "3 - Alpha", "4 - Beta" or "5 - Production/Stable" as the current state of your package
         'Development Status :: 3 - Alpha',
