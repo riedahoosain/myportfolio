@@ -1,11 +1,20 @@
-from flask import Flask, render_template, request, flash
+from flask import Flask, render_template, request
 
 app = Flask(__name__)
 
-
 @app.route('/')
 def home():
-    return 'Hello Flask!'
+    return render_template('home.html')
+
+@app.route('/your-url', methods=['GET', 'POST'])
+def your_url():
+    if request.method == 'POST':
+        print(request.form['code'])
+        print(request.form['url'])
+        return render_template('your_url.html', code=request.form['code'])
+
+    else:
+        return "this is not valid"
 
 
 if __name__ == "__main__":
