@@ -1,3 +1,4 @@
+# A REST API built with Python and Flask to serve historical weather data for various cities.
 from flask import Flask, render_template
 import pandas as pd
 

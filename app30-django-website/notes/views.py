@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.contrib import messages
 from django.http.response import HttpResponseRedirect
 from django.views.generic import CreateView, DetailView, ListView, UpdateView
 from django.views.generic.edit import DeleteView
@@ -13,6 +14,10 @@ class NotesDeleteView(DeleteView):
     model = Notes
     success_url = '/smart/notes'
     template_name = "notes/notes_delete.html"
+
+    def delete_post(request):
+        messages.success(request, 'The post has been created successfully.')
+
 
 
 class NotesUpdateView(UpdateView):

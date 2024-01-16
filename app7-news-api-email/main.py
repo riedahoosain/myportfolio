@@ -1,4 +1,6 @@
-# A website that gets data from a news API and uses sentiment analysis to publish only positive news
+# A website that gets data from a news API and emails you the topic of the news
+# Uses https://newsapi.org
+
 import requests
 from send_email import send_email
 
